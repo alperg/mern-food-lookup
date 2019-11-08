@@ -1,5 +1,5 @@
 import React from "react";
-import Client from "./Client";
+import API from "../../utils/Api";
 
 const MATCHING_ITEM_LIMIT = 25;
 
@@ -27,7 +27,7 @@ class FoodSearch extends React.Component {
         showRemoveIcon: true
       });
 
-      Client.search(value, foods => {
+      API.search(value, foods => {
         this.setState({
           foods: foods.slice(0, MATCHING_ITEM_LIMIT)
         });

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import SelectedFoods from "./components/SelectedFoods";
-import FoodSearch from "./components/FoodSearch";
+import SelectedFoods from "./components/SelectedFoods/";
+import FoodSearch from "./components/FoodSearch/";
 
 class App extends Component {
   state = {

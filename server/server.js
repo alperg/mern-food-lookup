@@ -7,7 +7,6 @@ require('dotenv').config();
 
 const express = require('express');
 const morgan = require('morgan');
-const dbConnection = require('./db'); // loads our connection to the mongo database
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
