@@ -2,17 +2,22 @@ const db = require("../models");
 
 // Defining methods for the foodController
 module.exports = {
-  findAll: function(req, res) {
+  find: function(req, res) {
+    const param = req.query.q;
+    
+    if(!param) {
+      res.json({
+        error: 'Missing required parameter `q`'
+      });
+      return;
+    }
+
+    const value = param.toLowerCase().trim();
+
     db.Food
-      .findAll({})
-      .then(foods => {
-        res.json(foods);
+      .find({
+        description: { $regex: value, $options: 'i' }
       })
-      .catch(err => res.status(422).json(err));
-  },
-  findById: function(req, res) {
-    db.Food
-      .find({ _id: req.params.id })
       .then(foods => {
         res.json(foods);
       })
