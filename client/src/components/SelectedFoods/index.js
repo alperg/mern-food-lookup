@@ -14,7 +14,7 @@ export default function SelectedFoods(props) {
   ));
 
   return (
-    <table className="ui selectable structured large table">
+    <table className="table table-hover table-striped">
       <thead>
         <tr>
           <th colSpan="5">

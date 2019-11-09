@@ -59,7 +59,7 @@ class FoodSearch extends React.Component {
 
     return (
       <div id="food-search">
-        <table className="ui selectable structured large table">
+        <table className="table table-hover table-striped">
           <thead>
             <tr>
               <th colSpan="5">
