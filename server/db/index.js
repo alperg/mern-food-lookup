@@ -21,7 +21,12 @@ db.on('error', err => {
 });
 
 db.once('open', () => {
-	console.log(`You have successfully connected to your mongo database: ${MONGO_URL}`);
+  console.log(`You have successfully connected to your mongo database: ${MONGO_URL}`);
+  // Import food data from json, uncomment once
+  // const seed = require('./seed/seed.js');
+  // seed.populateFoodData(res => {
+  //   console.log(res);
+  // });
 });
 
 module.exports = db;
