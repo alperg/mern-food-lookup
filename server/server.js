@@ -7,9 +7,12 @@ require('dotenv').config();
 
 const express = require('express');
 const morgan = require('morgan');
-const routes = require("./routes");
+const routes = require('./routes');
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// Connect to the Mongo DB
+require('./db');
 
 // Middlewares
 app.use(morgan('dev'));

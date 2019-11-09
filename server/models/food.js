@@ -54,7 +54,7 @@ const foodSchema = new Schema({
   gmwt_desc1: { type: String }, 
   gmwt_2: { type: Number }, 
   gmwt_desc2: { type: String },
-  refuse_pct: { type: Number }, 
+  refuse_pct: { type: Number }
 });
 
 const Food = mongoose.model("Food", foodSchema);
