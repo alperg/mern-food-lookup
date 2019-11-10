@@ -1,60 +1,66 @@
 import React from "react";
+import { Card, Icon, Table } from 'semantic-ui-react';
 
 export default function SelectedFoods(props) {
   const { foods } = props;
 
   const foodRows = foods.map((food, idx) => (
-    <tr key={idx} onClick={() => props.onFoodClick(idx)}>
-      <td>{food.description}</td>
-      <td className="right aligned">{food.kcal}</td>
-      <td className="right aligned">{food.protein_g}</td>
-      <td className="right aligned">{Number(food.fat_g).toFixed(2)}</td>
-      <td className="right aligned">{food.carbohydrate_g}</td>
-    </tr>
+    <Table.Row clickable="true" key={idx} onClick={() => props.onFoodClick(idx)}>
+      <Table.Cell>{food.description}</Table.Cell>
+      <Table.Cell textAlign='right'>{food.kcal}</Table.Cell>
+      <Table.Cell textAlign='right'>{food.protein_g}</Table.Cell>
+      <Table.Cell textAlign='right'>{Number(food.fat_g).toFixed(2)}</Table.Cell>
+      <Table.Cell textAlign='right'>{food.carbohydrate_g}</Table.Cell>
+    </Table.Row>
   ));
 
   return (
-    <table className="table table-hover table-striped">
-      <thead>
-        <tr>
-          <th colSpan="5">
-            <h3>Selected foods</h3>
-          </th>
-        </tr>
-        <tr>
-          <th className="eight wide">Description</th>
-          <th>Kcal</th>
-          <th>Protein (g)</th>
-          <th>Fat (g)</th>
-          <th>Carbs (g)</th>
-        </tr>
-      </thead>
-      <tbody>
-        {foodRows}
-      </tbody>
-      <tfoot>
-        <tr>
-          <th>Total</th>
-          <th className="right aligned" id="total-kcal">
-            {sum(foods, "kcal")}
-          </th>
-          <th className="right aligned" id="total-protein_g">
-            {sum(foods, "protein_g")}
-          </th>
-          <th className="right aligned" id="total-fat_g">
-            {sum(foods, "fat_g")}
-          </th>
-          <th className="right aligned" id="total-carbohydrate_g">
-            {sum(foods, "carbohydrate_g")}
-          </th>
-        </tr>
-      </tfoot>
-    </table>
+    <Card fluid color='red' style={{ marginTop: '3.6em' }}>
+      <Card.Content header="Selected Foods"></Card.Content>
+      <Card.Content>
+        <Table striped selectable fixed size="small" basic='very'>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell width="eight">Description</Table.HeaderCell>
+              <Table.HeaderCell textAlign='right'>Kcal</Table.HeaderCell>
+              <Table.HeaderCell textAlign='right'>Protein (g)</Table.HeaderCell>
+              <Table.HeaderCell textAlign='right'>Fat (g)</Table.HeaderCell>
+              <Table.HeaderCell textAlign='right'>Carbs (g)</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {foodRows}
+          </Table.Body>
+          <Table.Footer>
+            <Table.Row>
+              <Table.HeaderCell>Total</Table.HeaderCell>
+              <Table.HeaderCell textAlign='right'>
+                {sum(foods, "kcal")}
+              </Table.HeaderCell>
+              <Table.HeaderCell textAlign='right'>
+                {sum(foods, "protein_g")}
+              </Table.HeaderCell>
+              <Table.HeaderCell textAlign='right'>
+                {sum(foods, "fat_g")}
+              </Table.HeaderCell>
+              <Table.HeaderCell textAlign='right'>
+                {sum(foods, "carbohydrate_g")}
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Footer>
+        </Table>
+      </Card.Content>
+      <Card.Content extra>
+        {foodRows.length === 0 && <><Icon name='food' />No Food</>}
+        {foodRows.length === 1 && <><Icon name='food' />1 Food</>}
+        {foodRows.length > 1 && <><Icon name='food' />{foodRows.length} Foods</>}
+      </Card.Content>
+    </Card>
   );
 }
 
 function sum(foods, prop) {
   return foods
-    .reduce((memo, food) => parseInt(food[prop], 10) + memo, 0.0)
+    .reduce((memo, food) => parseFloat(food[prop], 10) + memo, 0.0)
     .toFixed(2);
 }
