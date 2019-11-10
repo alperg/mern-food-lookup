@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Grid, Container, Menu, Image } from 'semantic-ui-react';
 import SelectedFoods from "./components/SelectedFoods/";
 import FoodSearch from "./components/FoodSearch/";
+import logo from "./assets/images/logo.png";
 
 const fixedMenuStyle = {
   backgroundColor: '#ececec',
@@ -35,7 +36,7 @@ class App extends Component {
         <Menu borderless fixed="top" style={fixedMenuStyle}>
           <Container fluid>
             <Menu.Item>
-              <Image size='mini' src='/logo.png' />
+              <Image size="mini" src={logo} />
             </Menu.Item>
             <Menu.Item header style={{ fontSize: 22 }}>Food Lookup Demo</Menu.Item>
           </Container>
