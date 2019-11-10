@@ -52,7 +52,7 @@ class FoodSearch extends React.Component {
         <td>{food.description}</td>
         <td className="right aligned">{food.kcal}</td>
         <td className="right aligned">{food.protein_g}</td>
-        <td className="right aligned">{food.fat_g}</td>
+        <td className="right aligned">{Number(food.fat_g).toFixed(2)}</td>
         <td className="right aligned">{food.carbohydrate_g}</td>
       </tr>
     ));
