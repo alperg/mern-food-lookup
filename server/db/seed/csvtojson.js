@@ -20,13 +20,16 @@ fs.createReadStream(CSV_FILENAME)
   .on('data', (row) => {
     const rowObj = {};
 
-    COLUMNS.forEach((c) => {
+    COLUMNS.forEach(col => {
       // combine fat columns
-      if (c.match(/^fa_/)) {
+      if (col.match(/^fa_/)) {
         rowObj.fat_g = rowObj.fat_g || 0.0;
-        rowObj.fat_g = (parseFloat(rowObj.fat_g, 10) + parseFloat(row[c], 10)).toFixed(2);
+        row[col] = parseFloat(row[col], 10);
+        if(row[col]) {
+          rowObj.fat_g = parseFloat(rowObj.fat_g, 10) + parseFloat(row[col], 10);
+        }
       } else {
-        rowObj[c] = row[c];
+        rowObj[col] = row[col];
       }
     });
 

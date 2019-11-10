@@ -10,7 +10,7 @@ const foodSchema = new Schema({
   fa_sat_g: { type: Number }, 
   fa_mono_g: { type: Number }, 
   fa_poly_g: { type: Number },
-  fat_g: { type: String }
+  fat_g: { type: Number }
 });
 
 const Food = mongoose.model('Food', foodSchema);
