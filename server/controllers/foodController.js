@@ -22,5 +22,12 @@ module.exports = {
         res.json(foods);
       })
       .catch(err => res.status(422).json(err));
+  },
+  importData: function(req, res) {
+    // Import food data from json, uncomment once
+    const seed = require('../db/seed/seed.js');
+    seed.seedFoodData(response => {
+      res.json(response);
+    });
   }
 };

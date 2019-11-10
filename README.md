@@ -15,6 +15,8 @@ cd ..
 npm start
 ```
 
+To seed your db, browse `http://localhost:3001/api/food/seed`.
+
 ## Overview
 
 `create-react-app` configures a Webpack development server to run on `localhost:3000`. This development server will bundle all static assets located under `client/src/`. All requests to `localhost:3000` will serve `client/index.html` which will include Webpack's `bundle.js`.

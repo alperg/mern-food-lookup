@@ -2,7 +2,7 @@ const seedData = require('./seed.json');
 const db = require("../../models");
 
 module.exports = {
-  populateFoodData: function(cb) {
+  seedFoodData: function(cb) {
     db.Food.deleteMany({})
       .then(() => {
         return db.Food.insertMany(seedData);

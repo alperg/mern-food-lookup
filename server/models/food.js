@@ -1,62 +1,18 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const foodSchema = new Schema({
   ndb_no: { type: Number },
   description: { type: String },
-  water_g: { type: Number }, 
   kcal: { type: Number },
   protein_g: { type: Number }, 
-  lipid_total_g: { type: Number }, 
-  ash_g: { type: Number }, 
   carbohydrate_g: { type: Number },
-  fiber_td_g: { type: Number }, 
-  sugar_g: { type: Number }, 
-  calcium_mg: { type: Number }, 
-  iron_mg: { type: Number },
-  magnesium_mg: { type: Number }, 
-  phosphorus_mg: { type: Number }, 
-  potassium_mg: { type: Number },
-  sodium_mg: { type: Number }, 
-  zinc_mg: { type: Number }, 
-  copper_mg: { type: Number }, 
-  manganese_mg: { type: Number },
-  selenium_ug: { type: Number }, 
-  vit_c_mg: { type: Number }, 
-  thiamin_mg: { type: Number }, 
-  riboflavin_mg: { type: Number },
-  niacin_mg: { type: Number }, 
-  panto_acid_mg: { type: Number }, 
-  vit_b6_mg: { type: Number }, 
-  folate_tot_ug: { type: Number },
-  folic_acid_ug: { type: Number }, 
-  food_folate_ug: { type: Number }, 
-  folate_dfe_ug: { type: Number },
-  choline_tot_mg: { type: Number }, 
-  vit_b12_ug: { type: Number }, 
-  vit_a_iu: { type: Number }, 
-  vit_a_rae: { type: Number },
-  retinol_ug: { type: Number }, 
-  alpha_carot_ug: { type: Number }, 
-  beta_carot_ug: { type: Number },
-  beta_crypt_ug: { type: Number }, 
-  lycopene_ug: { type: Number }, 
-  lut_and_zea_ug: { type: Number },
-  vit_e_mg: { type: Number }, 
-  vit_d_ug: { type: Number }, 
-  vit_d_iu: { type: Number }, 
-  vit_k_ug: { type: Number },
   fa_sat_g: { type: Number }, 
   fa_mono_g: { type: Number }, 
-  fa_poly_g: { type: Number }, 
-  cholestrl_mg: { type: Number },
-  gmwt_1: { type: Number }, 
-  gmwt_desc1: { type: String }, 
-  gmwt_2: { type: Number }, 
-  gmwt_desc2: { type: String },
-  refuse_pct: { type: Number }
+  fa_poly_g: { type: Number },
+  fat_g: { type: String }
 });
 
-const Food = mongoose.model("Food", foodSchema);
+const Food = mongoose.model('Food', foodSchema);
 
 module.exports = Food;
