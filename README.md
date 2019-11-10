@@ -73,3 +73,7 @@ if (process.env.NODE_ENV === 'production') {
 ```
 
 You just need to have Webpack produce a static bundle of the React app for Heroku to render your client app.
+
+### Credits
+
+Inspired by https://github.com/fullstackreact/food-lookup-demo
