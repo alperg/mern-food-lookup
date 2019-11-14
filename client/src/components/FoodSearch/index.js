@@ -4,6 +4,15 @@ import API from "../../utils/Api";
 
 const MATCHING_ITEM_LIMIT = 25; 
 
+const debounce = (fn, delay) => {
+  let timer = null;
+  return function(...args) {
+    const context = this;
+    timer && clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(context, args), delay);
+  };
+};
+
 class FoodSearch extends React.Component {
   state = {
     foods: [],
@@ -11,7 +20,12 @@ class FoodSearch extends React.Component {
     searchValue: ""
   };
 
-  handleSearchChange = e => {
+  constructor(props) {
+    super(props);
+    this.fetchFoods = debounce(this.fetchFoods, 1000);
+  }
+
+  handleSearchChange = (e) => {
     const value = e.target.value;
 
     this.setState({
@@ -27,14 +41,16 @@ class FoodSearch extends React.Component {
       this.setState({
         showRemoveIcon: true
       });
-
-      API.search(value, foods => {
-        this.setState({
-          foods: foods.slice(0, MATCHING_ITEM_LIMIT)
-        });
-      });
+      this.fetchFoods(value);
     }
-  };
+  }
+
+  fetchFoods = (query) => {
+    API.search(query, result => {
+      const foods = result.slice(0, MATCHING_ITEM_LIMIT)
+      this.setState({ foods });
+    });
+  }
 
   handleSearchCancel = () => {
     this.setState({
