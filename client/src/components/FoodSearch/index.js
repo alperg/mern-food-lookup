@@ -46,7 +46,7 @@ class FoodSearch extends React.Component {
   }
 
   fetchFoods = (query) => {
-    API.search(query, result => {
+    API.search(query).then(result => {
       const foods = result.slice(0, MATCHING_ITEM_LIMIT)
       this.setState({ foods });
     });
