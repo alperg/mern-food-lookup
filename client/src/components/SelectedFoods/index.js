@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Icon, Table } from 'semantic-ui-react';
+import { Card, Icon, Table } from "semantic-ui-react";
 
 export default function SelectedFoods(props) {
   const { foods } = props;
