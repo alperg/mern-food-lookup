@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Grid, Container, Menu, Image } from 'semantic-ui-react';
 import SelectedFoods from "./components/SelectedFoods/";
 import FoodSearch from "./components/FoodSearch/";
@@ -10,53 +10,48 @@ const fixedMenuStyle = {
   boxShadow: '0px 3px 5px rgba(0, 0, 0, 0.2)'
 };
 
-class App extends Component {
-  state = {
-    selectedFoods: []
-  };
+function App() {
+  const [ selectedFoods, setSelectedFoods ] = useState([]);
 
-  removeFoodItem = itemIndex => {
-    const filteredFoods = this.state.selectedFoods.filter(
+  const removeFoodItem = itemIndex => {
+    const filteredFoods = selectedFoods.filter(
       (item, idx) => itemIndex !== idx
     );
-    this.setState({ selectedFoods: filteredFoods });
+    setSelectedFoods(filteredFoods);
   };
 
-  addFood = food => {
-    const newFoods = this.state.selectedFoods.concat(food);
-    this.setState({ selectedFoods: newFoods });
+  const addFood = food => {
+    const newFoods = selectedFoods.concat(food);
+    setSelectedFoods(newFoods);
   };
 
-  render() {
-    const { selectedFoods } = this.state;
-
-    return (
-      <div style={{ padding: '1.2em' }}>
-        
-        <Menu borderless fixed="top" style={fixedMenuStyle}>
-          <Container fluid>
-            <Menu.Item>
-              <Image size="mini" src={logo} />
-            </Menu.Item>
-            <Menu.Item header style={{ fontSize: 22 }}>Food Lookup Demo</Menu.Item>
-          </Container>
-        </Menu>
-
-        <Container fluid style={{ marginTop: '4.6em' }}>
-          <Grid divided="vertically">
-            <Grid.Row columns="2">
-              <Grid.Column>
-                <FoodSearch onFoodClick={this.addFood} />
-              </Grid.Column>
-              <Grid.Column>
-                <SelectedFoods foods={selectedFoods} onFoodClick={this.removeFoodItem} />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+  return (
+    <div style={{ padding: '1.2em' }}>
+      
+      <Menu borderless fixed="top" style={fixedMenuStyle}>
+        <Container fluid>
+          <Menu.Item>
+            <Image size="mini" src={logo} />
+          </Menu.Item>
+          <Menu.Item header style={{ fontSize: 22 }}>Food Lookup Demo</Menu.Item>
         </Container>
-      </div>
-    );
-  }
+      </Menu>
+
+      <Container fluid style={{ marginTop: '4.6em' }}>
+        <Grid divided="vertically">
+          <Grid.Row columns="2">
+            <Grid.Column>
+              <FoodSearch onFoodClick={addFood} />
+            </Grid.Column>
+            <Grid.Column>
+              <SelectedFoods foods={selectedFoods} onFoodClick={removeFoodItem} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    </div>
+  );
+  
 }
 
 export default App;
